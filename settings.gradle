@@ -1,0 +1,13 @@
+pluginManagement {
+    repositories {
+        maven {
+            url "${repository}"
+        }
+    }
+}
+
+rootProject.name = 'Microservices-exercise'
+
+include 'service-cotizador'
+include 'service-flota'
+include 'service-vehiculo'
