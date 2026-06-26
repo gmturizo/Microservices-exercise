@@ -1,1 +1,10 @@
-// Este archivo se deja vacío. Toda la configuración se hereda de la raíz.
+// build.gradle (Dentro de la carpeta service-vehiculo)
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly 'org.postgresql:postgresql'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    runtimeOnly 'com.h2database:h2'
+}
