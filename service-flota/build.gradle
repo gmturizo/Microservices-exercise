@@ -1,1 +1,4 @@
-// Este archivo se deja vacío. Toda la configuración se hereda de la raíz.
+dependencies {
+    // Esto le da a este módulo específico acceso a WebClient
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+}
