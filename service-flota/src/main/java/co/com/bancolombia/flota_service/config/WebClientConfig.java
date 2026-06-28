@@ -1,6 +1,6 @@
 package co.com.bancolombia.flota_service.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -8,23 +8,20 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfig {
 
-    @Value("${servicio.vehiculo.url}")
-    private String vehiculoUrl;
-
-    @Value("${servicio.cotizador.url}")
-    private String cotizadorUrl;
-
     @Bean
-    public WebClient vehiculoWebClient() {
-        return WebClient.builder()
-                .baseUrl(vehiculoUrl + "/api/v1/autos")
-                .build();
+    @LoadBalanced
+    public WebClient.Builder loadBalancedWebClientBuilder() {
+        return WebClient.builder();
     }
 
     @Bean
-    public WebClient cotizadorWebClient() {
-        return WebClient.builder()
-                .baseUrl(cotizadorUrl + "/api/cotizaciones")
-                .build();
+    public WebClient vehiculoWebClient(WebClient.Builder builder) {
+        return builder.clone().baseUrl("http://SERVICE-VEHICULO/api/v1/autos").build();
+    }
+
+    @Bean
+    public WebClient cotizadorWebClient(WebClient.Builder builder) {
+        return builder.clone().baseUrl("http://SERVICE-COTIZADOR/api/cotizaciones").build();
     }
 }
+
