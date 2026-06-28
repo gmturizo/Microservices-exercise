@@ -12,3 +12,5 @@ include 'service-cotizador'
 include 'service-flota'
 include 'service-vehiculo'
 include 'eureka-server'
+include 'api-gateway'
+
